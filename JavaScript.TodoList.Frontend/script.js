@@ -8,38 +8,39 @@ const elAdcionarNovaTarefa = document.getElementbyid("adicionar-nova-tarefa")
 async function carregarTarefas() {
     try {
         const response = await fetch(`${URL_API}/tarefas`)
-    
+
         if (response.ok) {
             const tarefas = await response.json()
 
-            elTarefas.innerHtml = ""
-            tarefas.forEach( tarefa => {
+            elTarefas.innerHTML = ""
+            tarefas.forEach(tarefa => {
                 const elTarefaItem = document.createElement("li")
                 elTarefaItem.classList.add(tarefa.completa ? "completa" : "pendente")
 
                 const elTarefaDescricao = document.createElement("span")
                 elTarefaDescricao.classList.add("descricao")
                 elTarefaDescricao.innerText = tarefa.descricao
-            
+
                 const elTarefaStatus = document.createElement("span")
                 elTarefaStatus.classList.add("status")
-                elTarefaStatus.innerText = tarefa.completa ? "FEITA" : "A FAZER"
+                elTarefaStatus.innerText = tarefa.completa ? "FEITA" : "A FAZER"     
 
-                const elTarefaApagar = documento.createElement ("button")
+                const elTarefaApagar = document.createElement("button")
                 elTarefaApagar.classList.add("apagar")
-                elTarefaApagar.innerText = "Apagar"
+                elTarefaApagar.innertext = "apagar"
 
                 elTarefaItem.appendChild(elTarefaDescricao)
                 elTarefaItem.appendChild(elTarefaStatus)
                 elTarefaItem.appendChild(elTarefaApagar)
 
-                elTarefaItem.appendChild(elTarefaItem)
-            })
+                elTarefas.appendChild(elTarefaItem)
+    })
         } else {
-            console.error("Erro ao carregas as tarefas")
+            console.error("Erro ao carregar tarefas")
         }
     } catch {
-        console.error("Erro de internet ao carregas as tarefas")
-    }    
+        console.error("Erro de internet ao carregar tarefas")
+    }
 }
+
 window.onload = carregarTarefas
