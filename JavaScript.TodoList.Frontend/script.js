@@ -43,4 +43,4 @@ async function carregarTarefas() {
     }
 }
 
-window.onload = carregarTarefas
+window.onload = carregarTarefas 
